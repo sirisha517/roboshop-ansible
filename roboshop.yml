@@ -2,6 +2,3 @@
   hosts: all
   roles:
     - "{{ role_name }}"
-
-- name:
-    hosts: 
