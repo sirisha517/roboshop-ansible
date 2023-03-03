@@ -18,4 +18,4 @@
   ansible.builtin.service:
     name: mongodb
     state: started
-    enable: true
+    enabled: true
