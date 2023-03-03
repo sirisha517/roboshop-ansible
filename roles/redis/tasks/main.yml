@@ -1,24 +1,3 @@
-#print_head "Enable Redis 6.2 dnf Module"
-#dnf module enable redis:remi-6.2 -y &>>${log_file}
-#status_check
-#
-#print_head "Install Redis"
-#yum install redis -y  &>>${log_file}
-#status_check
-#
-#print_head "Update Redis Listen Address"
-#sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf /etc/redis/redis.conf &>>${log_file}
-#status_check
-#
-#
-#print_head "Enable Redis"
-#systemctl enable redis &>>${log_file}
-#status_check
-#
-#print_head "Start Redis"
-#systemctl restart redis &>>${log_file}
-#status_check
-
 - name: Install Redis Repo
   ansible.builtin.yum:
     name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
@@ -29,3 +8,15 @@
   ansible.builtin.dnf:
     name: "@redis:remi-6.2"
     state: installed
+
+- name: Update Redis Listen Address
+  ansible.builtin.replace:
+    path: /etc/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: Start Redis
+  ansible.builtin.service:
+    name: redis
+    state: started
+    enabled: true
