@@ -1,0 +1,30 @@
+#print_head "copy systemd service file"
+#cp ${code_dir}/configs/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
+#status_check $?
+#
+#sed -i -e "s/ROBO_SHOP_USER_PASSWORD/${roboshop_app_password}/" /etc/systemd/system/payment.service &>>${log_file}
+#
+#
+#print_head "Reload systemd"
+#systemctl daemon-reload &>>${log_file}
+#status_check $?
+#
+#print_head "enable ${component} service"
+#systemctl enable ${component} &>>${log_file}
+#status_check $?
+#
+#print_head "start ${component} service"
+#systemctl restart ${component} &>>${log_file}
+#status_check $?
+
+- name: Copy systemd service file
+  ansible.builtin.copy:
+    src: "{{ componnet }}.service"
+    dest: /etc/systemd/system/{{component}}.service
+
+- name: Start service
+  ansible.builtin.systemd:
+    name: "{{ component }}"
+    state: restarted
+    enabled: true
+    daemon_reload: true
