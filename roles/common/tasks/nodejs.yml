@@ -1,6 +1,5 @@
 - name:  Configure NodeJs repo
-  ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x
-
+  ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
 
 - name: Install NGINX
   ansible.builtin.yum:
