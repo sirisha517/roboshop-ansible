@@ -1,3 +1,20 @@
-- name: demo
-  debug:
-    msg: NodeJs
+- name:  Configure NodeJs repo
+  ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x
+
+
+- name: Install NGINX
+  ansible.builtin.yum:
+    name: nodejs
+    state: installed
+
+- name: App Pre-requisites
+  ansible.builtin.import_tasks:
+    file: app-prereq.yml
+
+- name: Install node.js dependencies.
+  community.general.npm:
+    path: /app
+
+#- name: Schema Setup
+#  ansible.builtin.import_tasks:
+#    file: schema-setup.yml
