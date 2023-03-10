@@ -29,6 +29,4 @@ scrape_configs:
 
       relabel_configs:
       - source_labels: [__meta_ec2_tag_Name]
-        regex: '(.+)'
-        replacement: '${1}-randomtext'
-        target_label: randomlabel
+        target_label: name
