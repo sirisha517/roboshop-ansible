@@ -16,3 +16,11 @@ groups:
       severity: critical
     annotations:
       summary: Server Down
+
+  - alert: Memory
+      expr: 100 - (((node_memory_Buffers_bytes + node_memory_Cached_bytes + node_memory_MemFree_bytes) / node_memory_MemTotal_bytes) * 100)
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: Server Down
