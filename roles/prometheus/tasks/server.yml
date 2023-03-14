@@ -3,14 +3,13 @@
     src: prometheus.yml
     dest: /opt/prometheus/prometheus.yml
 
-- name: Update configuration template
+- name: Update Alerts Configuration
   ansible.builtin.template:
     src: "{{ item }}"
     dest: /opt/prometheus/{{ item }}
   loop: "{{ alert_files }}"
 
-
-- name: Restart Prometheus
+- name: Restart prometheus
   ansible.builtin.systemd:
     name: prometheus
     state: restarted
