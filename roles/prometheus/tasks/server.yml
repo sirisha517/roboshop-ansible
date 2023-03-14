@@ -6,7 +6,10 @@
 - name: Update configuration template
   ansible.builtin.template:
     src: alerts.yml
-    dest: /opt/prometheus/alerts.yml
+    dest: /opt/prometheus/{{ item }}
+   loop:
+     - alerts.yml
+     - servre.yml
 
 - name: Restart Prometheus
   ansible.builtin.systemd:
