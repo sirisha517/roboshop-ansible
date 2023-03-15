@@ -6,6 +6,7 @@ components:
   - {  name: payment, service_name: payment }
   - {  name: frontend, service_name: nginx }
 
+
 alert_files:
   - service-down-alerts.yml
   - alerts.yml

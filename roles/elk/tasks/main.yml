@@ -1,0 +1,3 @@
+- name: Run Logstash
+  ansible.builtin.import_tasks:
+    file: logstash.yml
