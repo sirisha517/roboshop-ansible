@@ -27,10 +27,9 @@ filebeat.inputs:
   # Change to true to enable this input configuration.
   enabled: true
 
-  # Paths that should be crawled and fetched. Glob based paths.
+ # Paths that should be crawled and fetched. Glob based paths.
   paths:
     - {{ log_file }}
-
     #- c:\programdata\elasticsearch\logs\*
 
   # Exclude lines. A list of regular expressions to match. It drops the lines that are
@@ -49,6 +48,8 @@ filebeat.inputs:
   # to add additional information to the crawled log files for filtering
   fields:
     component: {{ component }}
+  #  level: debug
+  #  review: 1
 
 # ============================== Filebeat modules ==============================
 
@@ -56,7 +57,7 @@ filebeat.config.modules:
   # Glob pattern for configuration loading
   path: ${path.config}/modules.d/*.yml
 
-  # Set to true to enable config reloading
+ # Set to true to enable config reloading
   reload.enabled: false
 
   # Period on which files under path should be checked for changes
@@ -147,7 +148,7 @@ setup.kibana:
 # ------------------------------ Logstash Output -------------------------------
 output.logstash:
   # The Logstash hosts
-  hosts: ["172.31.81.13:5044"]
+  hosts: ["172.31.83.55:5044"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
@@ -163,9 +164,9 @@ output.logstash:
 processors:
   - add_host_metadata:
       when.not.contains.tags: forwarded
-#  - add_cloud_metadata: ~
-#  - add_docker_metadata: ~
-#  - add_kubernetes_metadata: ~
+  #- add_cloud_metadata: ~
+  #- add_docker_metadata: ~
+  #- add_kubernetes_metadata: ~
 
 # ================================== Logging ===================================
 
@@ -226,3 +227,5 @@ processors:
 
 # This allows to enable 6.7 migration aliases
 #migration.6_to_7.enabled: true
+
+
