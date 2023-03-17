@@ -48,8 +48,6 @@ filebeat.inputs:
   # to add additional information to the crawled log files for filtering
   fields:
     component: {{ component }}
-  #  level: debug
-  #  review: 1
 
 # ============================== Filebeat modules ==============================
 
