@@ -15,7 +15,7 @@
    # path: /app
   ansible.builtin.shell: npm install
   args:
-    chdir: /app
+      chdir: /app
 
 - name: Schema Setup
   ansible.builtin.import_tasks:
